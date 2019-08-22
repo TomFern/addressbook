@@ -17,9 +17,9 @@ blocks:
       jobs:
         - name: npm install and cache
           commands:
-            - cache restore node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum package-lock.json),node-modules-master
+            - cache restore
             - npm install
-            - cache store node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum package-lock.json) node_modules
+            - cache store
   - name: Tests
     task:
       env_vars:
@@ -29,7 +29,7 @@ blocks:
         commands:
           - checkout
           - nvm use
-          - cache restore node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum package-lock.json),node-modules-$SEMAPHORE_GIT_BRANCH,node-modules-master
+          - cache restore
       jobs:
         - name: Static test
           commands:
