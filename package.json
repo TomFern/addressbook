@@ -6,8 +6,8 @@
   "scripts": {
     "test": "jest",
     "start": "node app.js",
-    "lint": "jshint app.js database*.js migrate.js"
-    "migrate": "node migrate.js",
+    "lint": "jshint app.js database*.js migrate.js",
+    "migrate": "node migrate.js"
   },
   "keywords": [
     "nodejs",
