@@ -1,4 +1,4 @@
-const Sequelize = require('sequelize');
+const { Sequelize, DataTypes } = require('sequelize');
 const isTestEnv = process.env.NODE_ENV === 'test';
 
 let sequelize;
@@ -27,13 +27,13 @@ else {
 
 const Person = sequelize.define('Person', {
     firstName: {
-        type: Sequelize.STRING,
+        type: DataTypes.STRING,
         allowNull: false
     },
     lastName: {
-        type: Sequelize.STRING,
+        type: DataTypes.STRING,
         allowNull: true
-    },
+    }
 });
 module.exports = {
     sequelize: sequelize,
