@@ -12,13 +12,13 @@ blocks:
       prologue:
         commands:
           - checkout
-          - echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USERNAME}" --password-stdin
+          - 'echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USERNAME}" --password-stdin'
       jobs:
-      - name: Docker build
-        commands:
-          - docker pull "${DOCKER_USERNAME}/addressbook:latest" || true
-          - docker build --cache-from "${DOCKER_USERNAME}/addressbook:latest" -t "${DOCKER_USERNAME}/addressbook:$SEMAPHORE_WORKFLOW_ID" .
-          - docker push "${DOCKER_USERNAME}/addressbook:$SEMAPHORE_WORKFLOW_ID"
+        - name: Docker build
+          commands:
+            - 'docker pull "${DOCKER_USERNAME}/addressbook:latest" || true'
+            - 'docker build --cache-from "${DOCKER_USERNAME}/addressbook:latest" -t "${DOCKER_USERNAME}/addressbook:$SEMAPHORE_WORKFLOW_ID" .'
+            - 'docker push "${DOCKER_USERNAME}/addressbook:$SEMAPHORE_WORKFLOW_ID"'
 promotions:
   - name: Deploy server to Kubernetes
     pipeline_file: deploy-k8s.yml
