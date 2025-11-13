@@ -13,6 +13,7 @@ blocks:
       prologue:
         commands:
           - checkout
+          - nvm install
           - nvm use
       jobs:
         - name: npm install and cache
@@ -28,6 +29,7 @@ blocks:
       prologue:
         commands:
           - checkout
+          - nvm install
           - nvm use
           - cache restore
       jobs:
