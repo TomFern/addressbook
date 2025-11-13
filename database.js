@@ -1,13 +1,17 @@
 const Sequelize = require('sequelize');
 const isTestEnv = process.env.NODE_ENV === 'test';
 
-const sequelize = isTestEnv
-    ? new Sequelize({
+let sequelize;
+
+if (isTestEnv) {
+  sequelize = new Sequelize({
         dialect: 'sqlite',
         storage: ':memory:',
         logging: false
-    })
-    : new Sequelize(process.env.DB_SCHEMA || 'postgres',
+  });
+}
+else {
+  sequelize = new Sequelize(process.env.DB_SCHEMA || 'postgres',
         process.env.DB_USER || 'postgres',
         process.env.DB_PASSWORD || '',
         {
@@ -18,6 +22,9 @@ const sequelize = isTestEnv
                 ssl: process.env.DB_SSL == "true"
             }
         });
+
+}
+
 const Person = sequelize.define('Person', {
     firstName: {
         type: Sequelize.STRING,
