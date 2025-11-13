@@ -16,8 +16,9 @@ blocks:
             - git config --global user.email "ci@semaphore.io"
             - git config --global user.name "Semaphore CI"
             - 'git remote set-url origin https://$GITHUB_TOKEN:x-oauth-basic@github.com/${SEMAPHORE_GIT_REPO_SLUG}.git'
-            - 'npm install -g @openai/codex'
-            - 'printenv OPENAI_API_KEY | codex login --with-api-key'
+            - npm install -g @openai/codex
+            - printenv OPENAI_API_KEY | codex login --with-api-key
+            - '#codex exec --full-auto -s danger-full-access "Find out why my Semaphore pipeline in branch $SEMAPHORE_BRANCH failed, implement a fix, and push it to a branch called autofix-${SEMAPHORE_GIT_SHA}"'
       secrets:
         - name: github
         - name: openai-api
