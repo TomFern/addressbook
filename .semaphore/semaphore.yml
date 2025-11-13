@@ -39,3 +39,6 @@ blocks:
         - name: Unit test
           commands:
             - npm run test
+promotions:
+  - name: Autofix CI
+    pipeline_file: pipeline_4.yml
