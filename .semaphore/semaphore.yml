@@ -38,5 +38,4 @@ blocks:
             - npm run lint
         - name: Unit test
           commands:
-            - sem-service start postgres
             - npm run test
