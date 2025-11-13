@@ -23,6 +23,7 @@
   },
   "devDependencies": {
     "jest": "^24.8.0",
-    "jshint": "^2.10.2"
+    "jshint": "^2.10.2",
+    "sqlite3": "^5.1.7"
   }
 }
