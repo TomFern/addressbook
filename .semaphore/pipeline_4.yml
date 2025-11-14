@@ -10,7 +10,6 @@ blocks:
       jobs:
         - name: Codex
           commands:
-            - checkout
             - mkdir -p $HOME/.codex
             - cp agents/codex/config.toml $HOME/.codex
             - git config --global user.email "ci@semaphore.io"
@@ -25,3 +24,9 @@ blocks:
         - name: github
         - name: openai-api
         - name: semaphore-mcp
+      prologue:
+        commands:
+          - checkout
+          - nvm install
+          - nvm use
+          - cache restore
