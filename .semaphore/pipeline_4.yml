@@ -17,7 +17,7 @@ blocks:
             - 'git remote set-url origin https://$GITHUB_TOKEN:x-oauth-basic@github.com/${SEMAPHORE_GIT_REPO_SLUG}.git'
             - npm install -g @openai/codex
             - printenv OPENAI_API_KEY | codex login --with-api-key
-            - 'codex exec --dangerously-bypass-approvals-and-sandbox "$(envsubst < agents/prompt-template.txt)"'
+            - codex exec --dangerously-bypass-approvals-and-sandbox "$(envsubst < agents/prompt-template.txt)"
             - npm run lint
             - npm test
       secrets:
@@ -26,6 +26,8 @@ blocks:
         - name: semaphore-mcp
       prologue:
         commands:
+          - 'export AUTOFIX_BRANCH=autofix-${SEMAPHORE_GIT_SHA}'
+          - 'git ls-remote --exit-code --heads origin "$AUTOFIX_BRANCH" >/dev/null && { echo "Error: branch ''$AUTOFIX_BRANCH'' already exists on remote. Skiping autofix"; return 1; }'
           - checkout
           - nvm install
           - nvm use
