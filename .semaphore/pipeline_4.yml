@@ -31,7 +31,7 @@ blocks:
         commands:
           - 'export AUTOFIX_BRANCH=autofix-${SEMAPHORE_GIT_SHA}'
           - checkout
-          - 'git ls-remote --exit-code --heads origin "$AUTOFIX_BRANCH" >/dev/null && { echo "Error: branch ''$AUTOFIX_BRANCH'' already exists on remote. Skiping autofix"; return 1; }'
+          - '! git ls-remote --exit-code --heads origin "$AUTOFIX_BRANCH"'
           - git config --global user.email "ci@semaphore.io"
           - git config --global user.name "Semaphore CI"
           - 'git remote set-url origin https://$GITHUB_TOKEN:x-oauth-basic@github.com/${SEMAPHORE_GIT_REPO_SLUG}.git'
