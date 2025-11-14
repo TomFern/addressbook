@@ -1,6 +1,6 @@
 # Addressbook
 
-Demo project to deploy on DigitalOcean Kubernetes using Semaphore CI/CD.
+Demo project to deploy on DigitalOcean Kubernetes using Semaphore CI
 
 ## Local
 
