@@ -4,3 +4,5 @@ Organization ID: f580f012-1b80-437f-acaf-be038f827270
 Project ID: $SEMAPHORE_PROJECT_ID
 Pipeline ID: $SEMAPHORE_PIPELINE_ID
 Workflow ID: $SEMAPHORE_WORKFLOW_ID
+
+When done create a file called `commit-message.txt` with a one-line summary of changes suitable for a Git commit message.
