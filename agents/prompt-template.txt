@@ -1,4 +1,4 @@
-Find out why the Semaphore the following pipeline has failed and implement a fix.
+Find out why the Semaphore the following pipeline has failed and implement a fix. Analyze all the jobs that have failed and fix all the errors one at a time.
 
 Organization ID: f580f012-1b80-437f-acaf-be038f827270
 Project ID: $SEMAPHORE_PROJECT_ID
