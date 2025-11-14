@@ -1,1 +1,6 @@
-Find out why the Semaphore workflow with ID ${SEMAPHORE_PIPELINE_ID} on project ID ${SEMAPHORE_PROJECT_ID} has failed and implement a fix.
+Find out why the Semaphore the following pipeline has failed and implement a fix.
+
+Organization ID: f580f012-1b80-437f-acaf-be038f827270
+Project ID: $SEMAPHORE_PROJECT_ID
+Pipeline ID: $SEMAPHORE_PIPELINE_ID
+Workflow ID: $SEMAPHORE_WORKFLOW_ID

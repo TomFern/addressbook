@@ -18,7 +18,9 @@ blocks:
             - 'git remote set-url origin https://$GITHUB_TOKEN:x-oauth-basic@github.com/${SEMAPHORE_GIT_REPO_SLUG}.git'
             - npm install -g @openai/codex
             - printenv OPENAI_API_KEY | codex login --with-api-key
-            - '#codex exec --full-auto -s danger-full-access "$(envsubst < agents/prompt_template.txt)"'
+            - 'codex exec --dangerously-bypass-approvals-and-sandbox "$(envsubst < agents/prompt-template.txt)"'
+            - npm run lint
+            - npm test
       secrets:
         - name: github
         - name: openai-api
