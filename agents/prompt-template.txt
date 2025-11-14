@@ -1,1 +1,8 @@
-Find out why the Semaphore workflow with ID ${SEMAPHORE_PIPELINE_ID} on project ID ${SEMAPHORE_PROJECT_ID} has failed and implement a fix.
+Find out why the Semaphore the following pipeline has failed and implement a fix. Analyze all the jobs that have failed and fix all the errors one at a time.
+
+Organization ID: f580f012-1b80-437f-acaf-be038f827270
+Project ID: $SEMAPHORE_PROJECT_ID
+Pipeline ID: $SEMAPHORE_PIPELINE_ID
+Workflow ID: $SEMAPHORE_WORKFLOW_ID
+
+When done create a file called `commit-message.txt` with a one-line summary of changes suitable for a Git commit message.

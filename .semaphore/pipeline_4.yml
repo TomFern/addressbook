@@ -10,16 +10,31 @@ blocks:
       jobs:
         - name: Codex
           commands:
-            - checkout
             - mkdir -p $HOME/.codex
             - cp agents/codex/config.toml $HOME/.codex
-            - git config --global user.email "ci@semaphore.io"
-            - git config --global user.name "Semaphore CI"
-            - 'git remote set-url origin https://$GITHUB_TOKEN:x-oauth-basic@github.com/${SEMAPHORE_GIT_REPO_SLUG}.git'
             - npm install -g @openai/codex
             - printenv OPENAI_API_KEY | codex login --with-api-key
-            - '#codex exec --full-auto -s danger-full-access "$(envsubst < agents/prompt_template.txt)"
+            - '# run codex in full auto mode'
+            - codex exec --dangerously-bypass-approvals-and-sandbox "$(envsubst < agents/prompt-template.txt)"
+            - '# run tests just to validate codex did the right thing'
+            - npm run lint
+            - npm test
+            - '# commit change'
+            - git add -A
+            - 'git commit -m "Autofix CI: $(cat commit-message.txt)"'
+            - git push origin "$AUTOFIX_BRANCH"
       secrets:
         - name: github
         - name: openai-api
         - name: semaphore-mcp
+      prologue:
+        commands:
+          - 'export AUTOFIX_BRANCH=autofix-${SEMAPHORE_GIT_SHA}'
+          - checkout
+          - git config --global user.email "ci@semaphore.io"
+          - git config --global user.name "Semaphore CI"
+          - 'git remote set-url origin https://$GITHUB_TOKEN:x-oauth-basic@github.com/${SEMAPHORE_GIT_REPO_SLUG}.git'
+          - git checkout -b "$AUTOFIX_BRANCH"
+          - nvm install
+          - nvm use
+          - cache restore
