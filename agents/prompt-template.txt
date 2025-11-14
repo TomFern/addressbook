@@ -1,0 +1,1 @@
+Find out why the Semaphore workflow with ID ${SEMAPHORE_PIPELINE_ID} on project ID ${SEMAPHORE_PROJECT_ID} has failed and implement a fix.
