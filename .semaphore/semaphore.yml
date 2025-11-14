@@ -42,3 +42,5 @@ blocks:
 promotions:
   - name: Autofix CI
     pipeline_file: pipeline_4.yml
+    auto_promote:
+      when: result = 'failed' AND branch !~ '^autofix-.*'
