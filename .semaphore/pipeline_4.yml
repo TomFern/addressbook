@@ -10,7 +10,6 @@ blocks:
       jobs:
         - name: Codex
           commands:
-            - checkout
             - mkdir -p $HOME/.codex
             - cp agents/codex/config.toml $HOME/.codex
             - git config --global user.email "ci@semaphore.io"
@@ -18,8 +17,14 @@ blocks:
             - 'git remote set-url origin https://$GITHUB_TOKEN:x-oauth-basic@github.com/${SEMAPHORE_GIT_REPO_SLUG}.git'
             - npm install -g @openai/codex
             - printenv OPENAI_API_KEY | codex login --with-api-key
-            - '#codex exec --full-auto -s danger-full-access "$(envsubst < agents/prompt_template.txt)"'
+            - '#codex exec --full-auto -s danger-full-access "$(envsubst < agents/prompt-template.txt)"'
       secrets:
         - name: github
         - name: openai-api
         - name: semaphore-mcp
+      prologue:
+        commands:
+          - checkout
+          - nvm install
+          - nvm use
+          - cache restore
