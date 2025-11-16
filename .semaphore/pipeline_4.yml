@@ -22,19 +22,20 @@ blocks:
             - '# commit change'
             - git add -A
             - 'git commit -m "Autoheal CI: $(cat commit-message.txt)"'
-            - git push origin "$AUTOFIX_BRANCH"
+            - git push origin "$AUTOHEAL_BRANCH"
+            - cache store commit-message-$AUTOHEAL_BRANCH commit-message.txt
       secrets:
         - name: github
         - name: openai-api
         - name: semaphore-mcp
       prologue:
         commands:
-          - 'export AUTOFIX_BRANCH=autoheal-${SEMAPHORE_GIT_SHA}'
+          - 'export AUTOHEAL_BRANCH=autoheal-${SEMAPHORE_GIT_SHA}'
           - checkout
           - git config --global user.email "ci@semaphore.io"
           - git config --global user.name "Semaphore CI"
           - 'git remote set-url origin https://$GITHUB_TOKEN:x-oauth-basic@github.com/${SEMAPHORE_GIT_REPO_SLUG}.git'
-          - git checkout -b "$AUTOFIX_BRANCH"
+          - git checkout -b "$AUTOHEAL_BRANCH"
           - nvm install
           - nvm use
           - cache restore

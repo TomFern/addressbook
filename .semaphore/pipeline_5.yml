@@ -12,7 +12,7 @@ blocks:
           commands:
             - '# echo $GITHUB_LOGIN | gh auth login --with-token'
             - '#gh pr create --base master --title "Autoheal CI" --fill'
-            - gh pr create --base master --title "Autoheal CI" --body "Autoheal CI"
+            - gh pr create --base master --title "Autoheal CI" --body "$(cat commit-message.txt)"
       prologue:
         commands:
           - checkout
@@ -22,5 +22,6 @@ blocks:
           - git fetch origin "$SEMAPHORE_GIT_BRANCH"
           - git checkout "$SEMAPHORE_GIT_BRANCH"
           - git pull origin "$SEMAPHORE_GIT_BRANCH"
+          - cache restore commit-message-$SEMAPHORE_GIT_BRANCH
       secrets:
         - name: github
