@@ -1,4 +1,5 @@
 const db = require('./database');
+
 beforeAll(async () => {
     await db.sequelize.sync();
 });

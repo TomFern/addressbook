@@ -1,6 +1,6 @@
 # Addressbook
 
-Demo project to deploy on DigitalOcean Kubernetes using Semaphore CI
+Demo Project
 
 ## Local
 
@@ -32,8 +32,9 @@ or with nodemon
 ## DigitalOcean
 
 Provision Services:
- - postgres cluster: create a database `addressbook_db` and a user `addressbook_user`
- - kubernetes cluster: set the cluster name `addressbook-server`
+
+- postgres cluster: create a database `addressbook_db` and a user `addressbook_user`
+- kubernetes cluster: set the cluster name `addressbook-server`
 
 ### Create secrets
 
@@ -44,7 +45,3 @@ Provision Services:
   - DO_ACCESS_TOKEN=YOUR_DIGITALOCEAN_TOKEN
 - env-production
   - environment file mapped to /home/semaphore/env-production
-
-
-
-
