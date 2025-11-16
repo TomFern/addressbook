@@ -11,7 +11,8 @@ blocks:
         - name: gh pr
           commands:
             - '# echo $GITHUB_LOGIN | gh auth login --with-token'
-            - gh pr create --base master --title "Autoheal CI" --fill
+            - '#gh pr create --base master --title "Autoheal CI" --fill'
+            - gh pr create --base master --title "Autoheal CI" --body "Autoheal CI"
       prologue:
         commands:
           - checkout
