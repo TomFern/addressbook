@@ -10,8 +10,9 @@ blocks:
       jobs:
         - name: gh pr
           commands:
-            - echo $GITHUB_LOGIN | gh auth login --with-token
-            - gh pr create --base main --title "Autoheal CI" --fill
+            - '# echo $GITHUB_LOGIN | gh auth login --with-token'
+            - '#gh pr create --base master --title "Autoheal CI" --fill'
+            - gh pr create --base master --title "Autoheal CI" --body "Autoheal CI"
       prologue:
         commands:
           - checkout
@@ -19,5 +20,7 @@ blocks:
           - git config --global user.name "Semaphore CI"
           - 'git remote set-url origin https://$GITHUB_TOKEN:x-oauth-basic@github.com/${SEMAPHORE_GIT_REPO_SLUG}.git'
           - git fetch origin "$SEMAPHORE_GIT_BRANCH"
-          - git checkout -b "$SEMAPHORE_GIT_BRANCH" origin/"$SEMAPHORE_GIT_BRANCH"
-          - git pull
+          - git checkout "$SEMAPHORE_GIT_BRANCH"
+          - git pull origin "$SEMAPHORE_GIT_BRANCH"
+      secrets:
+        - name: github
