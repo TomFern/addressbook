@@ -40,7 +40,11 @@ blocks:
           commands:
             - npm run test
 promotions:
-  - name: Autofix CI
+  - name: Autoheal CI
     pipeline_file: pipeline_4.yml
     auto_promote:
-      when: result = 'failed' AND branch !~ '^autofix-.*'
+      when: result = 'failed' AND branch !~ '^autoheal-.*'
+  - name: Autoheal PR
+    pipeline_file: pipeline_5.yml
+    auto_promote:
+      when: result = 'passed' AND branch =~ '^autoheal-.*'

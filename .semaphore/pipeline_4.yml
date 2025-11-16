@@ -1,5 +1,5 @@
 version: v1.0
-name: Autofix CI
+name: Autoheal CI
 agent:
   machine:
     type: e1-standard-2
@@ -21,7 +21,7 @@ blocks:
             - npm test
             - '# commit change'
             - git add -A
-            - 'git commit -m "Autofix CI: $(cat commit-message.txt)"'
+            - 'git commit -m "Autoheal CI: $(cat commit-message.txt)"'
             - git push origin "$AUTOFIX_BRANCH"
       secrets:
         - name: github
@@ -29,7 +29,7 @@ blocks:
         - name: semaphore-mcp
       prologue:
         commands:
-          - 'export AUTOFIX_BRANCH=autofix-${SEMAPHORE_GIT_SHA}'
+          - 'export AUTOFIX_BRANCH=autoheal-${SEMAPHORE_GIT_SHA}'
           - checkout
           - git config --global user.email "ci@semaphore.io"
           - git config --global user.name "Semaphore CI"

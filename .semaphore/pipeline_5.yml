@@ -1,0 +1,23 @@
+version: v1.0
+name: Create Autoheal PR
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu2004
+blocks:
+  - name: Create PR
+    task:
+      jobs:
+        - name: gh pr
+          commands:
+            - echo $GITHUB_LOGIN | gh auth login --with-token
+            - gh pr create --base main --title "Autoheal CI" --fill
+      prologue:
+        commands:
+          - checkout
+          - git config --global user.email "ci@semaphore.io"
+          - git config --global user.name "Semaphore CI"
+          - 'git remote set-url origin https://$GITHUB_TOKEN:x-oauth-basic@github.com/${SEMAPHORE_GIT_REPO_SLUG}.git'
+          - git fetch origin "$SEMAPHORE_GIT_BRANCH"
+          - git checkout -b "$SEMAPHORE_GIT_BRANCH" origin/"$SEMAPHORE_GIT_BRANCH"
+          - git pull
