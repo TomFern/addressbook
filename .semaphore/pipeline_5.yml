@@ -17,9 +17,9 @@ blocks:
           - checkout
           - git config --global user.email "ci@semaphore.io"
           - git config --global user.name "Semaphore CI"
-          - '#git remote set-url origin https://$GITHUB_TOKEN:x-oauth-basic@github.com/${SEMAPHORE_GIT_REPO_SLUG}.git'
-          - '#git fetch origin "$SEMAPHORE_GIT_BRANCH"'
-          - '#git checkout -b "$SEMAPHORE_GIT_BRANCH" origin/"$SEMAPHORE_GIT_BRANCH"'
-          - '#git pull'
+          - 'git remote set-url origin https://$GITHUB_TOKEN:x-oauth-basic@github.com/${SEMAPHORE_GIT_REPO_SLUG}.git'
+          - git fetch origin "$SEMAPHORE_GIT_BRANCH"
+          - git checkout "$SEMAPHORE_GIT_BRANCH" origin/"$SEMAPHORE_GIT_BRANCH"
+          - git pull
       secrets:
         - name: github
