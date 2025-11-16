@@ -1,7 +1,7 @@
 const { Sequelize, DataTypes } = require('sequelize');
 const isTestEnv = process.env.NODE_ENV === 'test';
 
-let sequelize = undefined;
+let sequelize;
 
 if (isTestEnv) {
   sequelize = new Sequelize({
