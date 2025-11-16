@@ -12,7 +12,7 @@ blocks:
           commands:
             - '# echo $GITHUB_LOGIN | gh auth login --with-token'
             - '#gh pr create --base master --title "Autoheal CI" --fill'
-            - gh pr create --base master --title "Autoheal CI" --body "$(cat commit-message.txt)"
+            - 'gh pr create --base master --title "Autoheal CI: $(cat commit-message.txt)" --body "PR created by autoheal CI\n\n$(cat commit-message.txt)"'
       prologue:
         commands:
           - checkout
