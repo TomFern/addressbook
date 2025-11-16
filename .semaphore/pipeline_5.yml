@@ -10,7 +10,7 @@ blocks:
       jobs:
         - name: gh pr
           commands:
-            - echo $GITHUB_LOGIN | gh auth login --with-token
+            - '# echo $GITHUB_LOGIN | gh auth login --with-token'
             - gh pr create --base main --title "Autoheal CI" --fill
       prologue:
         commands:
