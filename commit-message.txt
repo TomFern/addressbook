@@ -1,0 +1,1 @@
+Fix person test data and clean sequelize init
