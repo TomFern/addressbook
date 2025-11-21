@@ -49,7 +49,7 @@ blocks:
             - echo '```xml' >> prompt-issue.txt
             - cat junit.xml >> prompt-issue.txt
             - echo -e '\n```' >> prompt-ussue.txt
-            - 'gh issue create --assignee "@copilot" --title "Fix failed job: ${SEMAPHORE_JOB_NAME}" -F prompt-issue.txt'
+            - '[[ ! "$SEMAPHORE_GIT_WORKING_BRANCH" =~ ^copilot/ ]] && gh issue create --assignee "@copilot" --title "Fix failed job: ${SEMAPHORE_JOB_NAME}" -F prompt-issue.txt'
       secrets:
         - name: gh-cli
 after_pipeline:
