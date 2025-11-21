@@ -39,4 +39,13 @@ blocks:
         - name: Unit test
           commands:
             - npm run test
-            - '[[ -f junit.xml ]] && test-results publish juni.xml'
+      epilogue:
+        always:
+          commands:
+            - '[[ -f junit.xml ]] && test-results publish junit.xml'
+after_pipeline:
+  task:
+    jobs:
+      - name: Publish test reports
+        commands:
+          - test-results gen-pipeline-report
