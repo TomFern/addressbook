@@ -1,0 +1,3 @@
+Read the following JUnit test report, diagnose the failure and create a Pull Request with the fix. Validat
+e the fix before creating the Pull Request.
+
