@@ -1,11 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="3" failures="0" errors="0" time="0.367">
-  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2025-11-21T10:43:23" time="0.325" tests="3">
-    <testcase classname=" create person" name=" create person" time="0.003">
+<testsuites name="jest tests" tests="3" failures="1" errors="0" time="0.517">
+  <testsuite name="undefined" errors="0" failures="1" skipped="0" timestamp="2025-11-21T14:05:59" time="0.476" tests="3">
+    <testcase classname=" create person" name=" create person" time="0.015">
     </testcase>
-    <testcase classname=" get person" name=" get person" time="0.002">
+    <testcase classname=" get person" name=" get person" time="0.006">
+      <failure>Error: expect(received).toEqual(expected) // deep equality
+
+Expected: &quot;Sammy&quot;
+Received: &quot;Samy&quot;
+    at Object.toEqual (/home/runner/work/addressbook/addressbook/database.test.js:19:30)</failure>
+      <failure>Error: expect.assertions(2)
+
+Expected two assertions to be called but received one assertion call.
+    at Object.assertions (/home/runner/work/addressbook/addressbook/database.test.js:17:12)
+    at Promise.finally.completed (/home/runner/work/addressbook/addressbook/node_modules/jest-circus/build/jestAdapterInit.js:1557:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (/home/runner/work/addressbook/addressbook/node_modules/jest-circus/build/jestAdapterInit.js:1497:10)
+    at _callCircusTest (/home/runner/work/addressbook/addressbook/node_modules/jest-circus/build/jestAdapterInit.js:1007:40)
+    at _runTest (/home/runner/work/addressbook/addressbook/node_modules/jest-circus/build/jestAdapterInit.js:947:3)
+    at /home/runner/work/addressbook/addressbook/node_modules/jest-circus/build/jestAdapterInit.js:849:7
+    at _runTestsForDescribeBlock (/home/runner/work/addressbook/addressbook/node_modules/jest-circus/build/jestAdapterInit.js:862:11)
+    at run (/home/runner/work/addressbook/addressbook/node_modules/jest-circus/build/jestAdapterInit.js:761:3)
+    at runAndTransformResultsToJestFormat (/home/runner/work/addressbook/addressbook/node_modules/jest-circus/build/jestAdapterInit.js:1918:21)
+    at jestAdapter (/home/runner/work/addressbook/addressbook/node_modules/jest-circus/build/runner.js:101:19)
+    at runTestInternal (/home/runner/work/addressbook/addressbook/node_modules/jest-runner/build/index.js:275:16)
+    at runTest (/home/runner/work/addressbook/addressbook/node_modules/jest-runner/build/index.js:343:7)</failure>
     </testcase>
-    <testcase classname=" delete person" name=" delete person" time="0.001">
+    <testcase classname=" delete person" name=" delete person" time="0.003">
     </testcase>
   </testsuite>
 </testsuites>
