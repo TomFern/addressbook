@@ -1,6 +1,6 @@
 # Addressbook
 
-Demo Project
+Demo Project: Self-healing pipelines CI
 
 ## Local
 
