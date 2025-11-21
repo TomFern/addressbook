@@ -39,3 +39,4 @@ blocks:
         - name: Unit test
           commands:
             - npm run test
+            - '[[ -f junit.xml ]] && test-results publish juni.xml'
