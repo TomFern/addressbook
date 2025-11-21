@@ -43,6 +43,11 @@ blocks:
         always:
           commands:
             - '[[ -f junit.xml ]] && test-results publish junit.xml'
+        on_fail:
+          commands:
+            - gh issue list
+      secrets:
+        - name: gh-cli
 after_pipeline:
   task:
     jobs:
