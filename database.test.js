@@ -7,7 +7,7 @@ test('create person', async () => {
     expect.assertions(1);
     const person = await db.Person.create({
         id: 1,
-        firstName: 'Samy',
+        firstName: 'Sammy',
         lastName: 'Davis Jr.',
         email: 'sammy@example.com'
     });
