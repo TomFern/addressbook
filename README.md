@@ -1,6 +1,6 @@
 # Addressbook
 
-Demo Project
+Demo Project: Use GitHub Cloud Copilot
 
 ## Local
 
