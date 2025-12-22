@@ -41,3 +41,4 @@ blocks:
             - nvm use
             - cache restore
             - npm test
+            - test-results publish junit.xml
