@@ -4,7 +4,6 @@ agent:
   machine:
     type: f1-standard-2
     os_image: ubuntu2404
-
 blocks:
   - name: Install Dependencies
     dependencies: []
@@ -13,11 +12,11 @@ blocks:
         - name: npm install
           commands:
             - checkout
+            - nvm install
             - nvm use
             - cache restore
             - npm install
             - cache store
-
   - name: Lint
     dependencies:
       - Install Dependencies
@@ -26,10 +25,10 @@ blocks:
         - name: Run jshint
           commands:
             - checkout
+            - nvm install
             - nvm use
             - cache restore
             - npm run lint
-
   - name: Test
     dependencies:
       - Install Dependencies
@@ -38,6 +37,7 @@ blocks:
         - name: Run unit tests
           commands:
             - checkout
+            - nvm install
             - nvm use
             - cache restore
             - npm test
