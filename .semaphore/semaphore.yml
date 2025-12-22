@@ -1,60 +1,43 @@
 version: v1.0
-name: Addressbook
+name: Test and Lint Pipeline
 agent:
   machine:
     type: f1-standard-2
     os_image: ubuntu2404
+
 blocks:
-  - name: Install dependencies
+  - name: Install Dependencies
+    dependencies: []
     task:
-      env_vars:
-        - name: NODE_ENV
-          value: test
-      prologue:
-        commands:
-          - checkout
-          - nvm install
-          - nvm use
       jobs:
-        - name: npm install and cache
+        - name: npm install
           commands:
+            - checkout
+            - nvm use
             - cache restore
             - npm install
             - cache store
-  - name: Tests
+
+  - name: Lint
+    dependencies:
+      - Install Dependencies
     task:
-      env_vars:
-        - name: NODE_ENV
-          value: test
-      prologue:
-        commands:
-          - checkout
-          - nvm install
-          - nvm use
-          - cache restore
       jobs:
-        - name: Static test
+        - name: Run jshint
           commands:
+            - checkout
+            - nvm use
+            - cache restore
             - npm run lint
-        - name: Unit test
+
+  - name: Test
+    dependencies:
+      - Install Dependencies
+    task:
+      jobs:
+        - name: Run unit tests
           commands:
-            - npm run test
-      epilogue:
-        always:
-          commands:
-            - '[[ -f junit.xml ]] && test-results publish junit.xml'
-        on_fail:
-          commands:
-            - cp prompt-template.txt prompt-issue.txt
-            - echo '```xml' >> prompt-issue.txt
-            - cat junit.xml >> prompt-issue.txt
-            - echo -e '\n```' >> prompt-ussue.txt
-            - '[[ ! "$SEMAPHORE_GIT_WORKING_BRANCH" =~ ^copilot/ ]] && gh issue create --assignee "@copilot" --title "Fix failed job: ${SEMAPHORE_JOB_NAME}" -F prompt-issue.txt'
-      secrets:
-        - name: gh-cli
-after_pipeline:
-  task:
-    jobs:
-      - name: Publish test reports
-        commands:
-          - test-results gen-pipeline-report
+            - checkout
+            - nvm use
+            - cache restore
+            - npm test
