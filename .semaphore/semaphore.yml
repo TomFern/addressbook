@@ -42,3 +42,9 @@ blocks:
             - cache restore
             - npm test
             - test-results publish junit.xml
+after_pipeline:
+  task:
+    jobs:
+      - name: Process test results
+        commands:
+          - test-results gen-pipeline-report
